@@ -12,14 +12,19 @@ function lugInit() {
   const page = body.getAttribute("data-page") || "";
   const usuario = typeof lugUsuarioActual === "function" ? lugUsuarioActual() : null;
 
+  const esAdmin = typeof lugEsAdmin === "function" ? lugEsAdmin() : false;
+
   const links = [
     { id: "home", href: root + "index.html", label: "Home" },
     { id: "productos", href: root + "productos.html", label: "Productos" },
     { id: "nosotros", href: root + "nosotros.html", label: "Nosotros" },
     { id: "blog", href: root + "blog.html", label: "Blog" },
     { id: "contacto", href: root + "contacto.html", label: "Contacto" },
-    { id: "admin", href: root + "admin-productos.html", label: "⚙️ Admin" },
   ];
+
+  if (esAdmin) {
+    links.push({ id: "admin", href: root + "admin-productos.html", label: "⚙️ Admin" });
+  }
 
   const navLinksHtml = links
     .map(

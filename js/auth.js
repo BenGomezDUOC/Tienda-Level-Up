@@ -11,11 +11,37 @@ const LUG_NIVELES = [
   { nombre: "Leyenda LevelUp", minPuntos: 700, icono: "🏆" },
 ];
 
+const LUG_ADMIN_USER = {
+  id: "u_admin",
+  nombre: "Administrador Level-Up",
+  email: "admin@levelupgamer.cl",
+  username: "admin",
+  password: "duoc123",
+  rol: "admin",
+  descuentoDuoc: true,
+  codigoReferido: "ADM001",
+  puntosLevelUp: 9999,
+  fechaNacimiento: "1990-01-01",
+  preferencias: { categoriasFavoritas: [] },
+  creado: "2026-01-01T00:00:00.000Z",
+};
+
 function lugGetUsers() {
   try {
-    return JSON.parse(localStorage.getItem(LUG_KEYS.USERS)) || [];
+    let users = JSON.parse(localStorage.getItem(LUG_KEYS.USERS));
+    if (!users || !Array.isArray(users)) {
+      users = [LUG_ADMIN_USER];
+      localStorage.setItem(LUG_KEYS.USERS, JSON.stringify(users));
+      return users;
+    }
+    // Asegurar que el usuario admin siempre exista en la lista
+    if (!users.some((u) => u.username === "admin" || u.email.toLowerCase() === "admin@levelupgamer.cl")) {
+      users.unshift(LUG_ADMIN_USER);
+      localStorage.setItem(LUG_KEYS.USERS, JSON.stringify(users));
+    }
+    return users;
   } catch (e) {
-    return [];
+    return [LUG_ADMIN_USER];
   }
 }
 
@@ -80,15 +106,33 @@ function lugRegistrarUsuario({ nombre, email, fechaNacimiento, password, codigoR
   return { ok: true, usuario: nuevoUsuario };
 }
 
-function lugIniciarSesion(email, password) {
+function lugIniciarSesion(identificador, password) {
+  const idLimpio = String(identificador || "").trim().toLowerCase();
+  
+  // Regla especial Administrador: usuario "admin" y contraseña "duoc123"
+  if ((idLimpio === "admin" || idLimpio === "admin@levelupgamer.cl") && password === "duoc123") {
+    const users = lugGetUsers();
+    let admin = users.find((u) => u.username === "admin" || u.email.toLowerCase() === "admin@levelupgamer.cl");
+    if (!admin) {
+      admin = LUG_ADMIN_USER;
+      users.unshift(admin);
+      lugSaveUsers(users);
+    }
+    localStorage.setItem(LUG_KEYS.SESSION, JSON.stringify({ email: admin.email, rol: "admin" }));
+    return { ok: true, usuario: admin };
+  }
+
   const users = lugGetUsers();
   const usuario = users.find(
-    (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+    (u) =>
+      ((u.email && u.email.toLowerCase() === idLimpio) ||
+       (u.username && u.username.toLowerCase() === idLimpio)) &&
+      u.password === password
   );
   if (!usuario) {
-    return { ok: false, error: "Correo o contraseña incorrectos." };
+    return { ok: false, error: "Usuario o contraseña incorrectos." };
   }
-  localStorage.setItem(LUG_KEYS.SESSION, JSON.stringify({ email: usuario.email }));
+  localStorage.setItem(LUG_KEYS.SESSION, JSON.stringify({ email: usuario.email, rol: usuario.rol || "usuario" }));
   return { ok: true, usuario };
 }
 
@@ -105,6 +149,12 @@ function lugUsuarioActual() {
   } catch (e) {
     return null;
   }
+}
+
+function lugEsAdmin() {
+  const usuario = lugUsuarioActual();
+  if (!usuario) return false;
+  return usuario.rol === "admin" || usuario.username === "admin" || usuario.email.toLowerCase() === "admin@levelupgamer.cl";
 }
 
 function lugActualizarUsuario(email, cambios) {
