@@ -25,9 +25,9 @@ const LugValidate = {
     return edad >= 18;
   },
 
-  /* Regla de negocio: correos @duocuc.cl obtienen 20% de descuento de por vida */
+  /* Regla de negocio: correos Duoc obtienen 20% de descuento de por vida (@duocuc.cl, @duoc.cl, @alumnos.duoc.cl) */
   esCorreoDuoc(valor) {
-    return /@duocuc\.cl$/i.test(String(valor).trim());
+    return /@([a-zA-Z0-9.-]+\.)?duoc(uc)?\.cl$/i.test(String(valor).trim());
   },
 
   soloTexto(valor) {

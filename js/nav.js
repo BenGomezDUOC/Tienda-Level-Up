@@ -18,6 +18,7 @@ function lugInit() {
     { id: "nosotros", href: root + "nosotros.html", label: "Nosotros" },
     { id: "blog", href: root + "blog.html", label: "Blog" },
     { id: "contacto", href: root + "contacto.html", label: "Contacto" },
+    { id: "admin", href: root + "admin-productos.html", label: "⚙️ Admin" },
   ];
 
   const navLinksHtml = links
@@ -84,12 +85,15 @@ function lugInit() {
           <a href="${root}productos.html">Catálogo de productos</a>
           <a href="${root}carrito.html">Carrito de compras</a>
           <a href="${root}registro.html">Crear cuenta</a>
+          <a href="${root}mi-cuenta.html">Mi Cuenta y Puntos LevelUp</a>
         </div>
         <div>
-          <h3 class="footer-titulo">Comunidad</h3>
+          <h3 class="footer-titulo">Comunidad & Admin</h3>
           <a href="${root}blog.html">Blog gamer</a>
           <a href="${root}nosotros.html">Nosotros</a>
-          <a href="${root}contacto.html">Contacto</a>
+          <a href="${root}contacto.html">Contacto y Mapa de Eventos</a>
+          <a href="${root}admin-productos.html" style="color: var(--verde);">Panel Admin: Productos</a>
+          <a href="${root}admin-usuarios.html" style="color: var(--verde);">Panel Admin: Usuarios</a>
         </div>
         <div>
           <h3 class="footer-titulo">Soporte técnico</h3>
