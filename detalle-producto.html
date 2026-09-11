@@ -79,9 +79,9 @@
         </div>
 
         <div class="detalle-grid">
-          <!-- Imagen / Ícono Grande -->
+          <!-- Imagen Principal -->
           <div class="detalle-imagen">
-            ${p.icono}
+            ${lugRenderProductVisual(p, 'detalle-img')}
           </div>
 
           <!-- Información del Producto -->
@@ -277,7 +277,7 @@
 
       relCont.innerHTML = rels.map(p => `
         <div class="producto-card">
-          <div class="producto-imagen">${p.icono}</div>
+          <div class="producto-imagen">${lugRenderProductVisual(p)}</div>
           <div class="producto-info">
             <span class="producto-categoria">${lugGetCategoryName(p.categoria)}</span>
             <h3 class="producto-nombre">${p.nombre}</h3>

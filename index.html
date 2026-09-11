@@ -203,7 +203,7 @@
         const productos = lugGetProducts().slice(0, 4); // mostrar los primeros 4
         prodCont.innerHTML = productos.map(p => `
           <div class="producto-card">
-            <div class="producto-imagen">${p.icono}</div>
+            <div class="producto-imagen">${lugRenderProductVisual(p)}</div>
             <div class="producto-info">
               <span class="producto-categoria">${lugGetCategoryName(p.categoria)}</span>
               <h3 class="producto-nombre">${p.nombre}</h3>

@@ -110,7 +110,7 @@
                 <tr>
                   <td>
                     <div class="carrito-producto">
-                      <div class="mini-imagen">${item.producto.icono}</div>
+                      <div class="mini-imagen">${lugRenderProductVisual(item.producto, 'mini-img')}</div>
                       <div>
                         <strong><a href="detalle-producto.html?codigo=${item.producto.codigo}">${item.producto.nombre}</a></strong>
                         <div style="font-size: 0.75rem; color: var(--texto-tenue);">${lugGetCategoryName(item.producto.categoria)} • Stock: ${item.producto.stock} un.</div>

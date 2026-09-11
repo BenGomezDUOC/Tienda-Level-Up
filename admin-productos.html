@@ -140,6 +140,13 @@
           <span class="mensaje-error" data-error-for="prod-fabricante"></span>
         </div>
 
+        <!-- Ruta de Imagen -->
+        <div class="campo">
+          <label for="prod-imagen">Ruta de Imagen (img/) *</label>
+          <input type="text" id="prod-imagen" placeholder="Ej: img/Catan.webp">
+          <span class="ayuda">Nombre del archivo en la carpeta img/</span>
+        </div>
+
         <!-- Descripción -->
         <div class="campo">
           <label for="prod-desc">Descripción Detallada *</label>
@@ -222,7 +229,11 @@
       tbody.innerHTML = productos.map(p => `
         <tr>
           <td><code>${p.codigo}</code></td>
-          <td style="font-size: 1.4rem;">${p.icono}</td>
+          <td style="width: 50px; text-align: center;">
+            <div style="width: 42px; height: 42px; border-radius: 4px; overflow: hidden; background: #080b0f; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--borde);">
+              ${lugRenderProductVisual(p, 'admin-thumb')}
+            </div>
+          </td>
           <td><strong>${p.nombre}</strong></td>
           <td>${lugGetCategoryName(p.categoria)}</td>
           <td style="font-family: var(--fuente-titulo); color: var(--azul);">${lugFormatCLP(p.precio)}</td>
@@ -256,6 +267,7 @@
       document.getElementById("prod-precio").value = "";
       document.getElementById("prod-stock").value = "10";
       document.getElementById("prod-fabricante").value = "";
+      document.getElementById("prod-imagen").value = "";
       document.getElementById("prod-desc").value = "";
       document.getElementById("prod-icono").value = "🎮";
       limpiarErroresModal();
@@ -275,6 +287,7 @@
       document.getElementById("prod-precio").value = p.precio;
       document.getElementById("prod-stock").value = p.stock;
       document.getElementById("prod-fabricante").value = p.fabricante;
+      document.getElementById("prod-imagen").value = p.imagen || "";
       document.getElementById("prod-desc").value = p.descripcion;
       document.getElementById("prod-icono").value = p.icono;
       limpiarErroresModal();
@@ -305,6 +318,7 @@
       const precio = Number(document.getElementById("prod-precio").value);
       const stock = Number(document.getElementById("prod-stock").value);
       const fabricante = document.getElementById("prod-fabricante").value.trim();
+      const imagen = document.getElementById("prod-imagen").value.trim();
       const desc = document.getElementById("prod-desc").value.trim();
       const icono = document.getElementById("prod-icono").value.trim() || "🎮";
 
@@ -353,6 +367,7 @@
           rating: 5.0,
           descripcion: desc,
           fabricante,
+          imagen,
           icono
         });
       } else {
@@ -365,6 +380,7 @@
             precio,
             stock,
             fabricante,
+            imagen: imagen || productos[idx].imagen,
             descripcion: desc,
             icono
           };

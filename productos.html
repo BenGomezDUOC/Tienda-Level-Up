@@ -200,7 +200,7 @@
 
         grid.innerHTML = productos.map(p => `
           <div class="producto-card">
-            <div class="producto-imagen">${p.icono}</div>
+            <div class="producto-imagen">${lugRenderProductVisual(p)}</div>
             <div class="producto-info">
               <span class="producto-categoria">${lugGetCategoryName(p.categoria)} • ${p.fabricante}</span>
               <h3 class="producto-nombre">${p.nombre}</h3>
