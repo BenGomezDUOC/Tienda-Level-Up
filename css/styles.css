@@ -771,12 +771,25 @@ textarea.input-invalido {
 }
 
 .selector-cantidad input {
-  width: 48px;
+  width: 65px;
+  height: 38px;
   text-align: center;
   border: none;
   border-left: 1px solid var(--borde-fuerte);
   border-right: 1px solid var(--borde-fuerte);
   border-radius: 0;
+  padding: 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #05070a;
+  color: var(--texto);
+  -moz-appearance: textfield;
+}
+
+.selector-cantidad input::-webkit-outer-spin-button,
+.selector-cantidad input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .review-item {
