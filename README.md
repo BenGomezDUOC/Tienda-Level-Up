@@ -92,7 +92,10 @@ Para cumplir con el requerimiento de control de acceso a las operaciones crític
 ### 🌐 Tienda Pública
 1. **HOME / Página Principal (`index.html`)**: Banner principal gamer, estadísticas de la tienda, parrilla de categorías, productos destacados con imágenes reales, llamada a gamificación y sección de impacto comunitario.
 2. **Catálogo de Productos (`productos.html`)**: Muestra todas las 10 categorías requeridas con chips rápidos, buscador en tiempo real, filtro por categoría y ordenamiento (precio y rating).
-3. **Detalle de Producto (`detalle-producto.html`)**: Renderizado dinámico vía `?codigo=...`, fotografía en alta resolución, indicador de origen/fabricante, disponibilidad de stock, selector de cantidad, cálculo de precio con 20% de descuento Duoc, sistema de reseñas con estrellas y productos recomendados.
+3. **Detalle de Producto (`detalle-producto.html`)**: Renderizado dinámico vía `?codigo=...`, fotografía en alta resolución, indicador de origen/fabricante, disponibilidad de stock, selector de cantidad rectangular, cálculo de precio con 20% de descuento Duoc, productos recomendados y **sistema de reseñas y calificaciones realistas**:
+   - Entre 2 y 5 reseñas auténticas por producto con notas de 3 a 5 estrellas.
+   - 5 reseñas completas para los artículos más cotizados: **Auriculares HyperX Cloud II**, **PC Gamer ASUS ROG Strix** y **Mouse Logitech G502 HERO**.
+   - Cálculo dinámico del promedio en estrellas y formulario para agregar nuevas reseñas de clientes con persistencia en `localStorage`.
 4. **Registro de Usuario (`registro.html`)**:
    - **Regla de Negocio 1**: Verificación estricta de **mayor de 18 años** mediante validación en JavaScript.
    - **Regla de Negocio 2**: Detección en vivo de correos Duoc UC (`@duocuc.cl`, `@duoc.cl`, `@alumnos.duoc.cl`) activando el **20% de descuento de por vida**.

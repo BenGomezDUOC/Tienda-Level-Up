@@ -208,7 +208,7 @@
               <span class="producto-categoria">${lugGetCategoryName(p.categoria)}</span>
               <h3 class="producto-nombre">${p.nombre}</h3>
               <div class="producto-rating">
-                ${lugRenderEstrellas(p.rating)} (${p.rating})
+                ${lugRenderEstrellas(lugPromedioCalificacion(p.codigo))} (${lugPromedioCalificacion(p.codigo)})
               </div>
               <div class="producto-precio">${lugFormatCLP(p.precio)}</div>
               <div class="producto-stock">Stock: ${p.stock} un.</div>
