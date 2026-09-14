@@ -4,11 +4,7 @@
    los productos comprados."
    ============================================================ */
 
-/* Catálogo base de reseñas con nicknames gamer auténticos (entre 3 y 5 estrellas, 
-   mínimo 2 por producto y 5 para los más cotizados: audífonos, 
-   pc gamer y mouse). */
 const LUG_REVIEWS_BASE = {
-  // 1. Auriculares Gamer HyperX Cloud II (5 reseñas - Producto muy cotizado)
   "AC002": [
     {
       autor: "Vortax",
@@ -42,7 +38,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 2. PC Gamer ASUS ROG Strix (5 reseñas - Producto muy cotizado)
   "CG001": [
     {
       autor: "Kurogane",
@@ -76,7 +71,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 3. Mouse Gamer Logitech G502 HERO (5 reseñas - Producto muy cotizado)
   "MS001": [
     {
       autor: "ManzanaVeloz",
@@ -110,7 +104,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 4. Catan (3 reseñas)
   "JM001": [
     {
       autor: "Sora",
@@ -132,7 +125,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 5. Carcassonne (2 reseñas)
   "JM002": [
     {
       autor: "Zkylar",
@@ -148,7 +140,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 6. Controlador Inalámbrico Xbox Series X (3 reseñas)
   "AC001": [
     {
       autor: "Vortax",
@@ -170,7 +161,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 7. PlayStation 5 (3 reseñas)
   "CO001": [
     {
       autor: "Kurogane",
@@ -192,7 +182,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 8. Silla Gamer Secretlab Titan (3 reseñas)
   "SG001": [
     {
       autor: "Aethel",
@@ -214,7 +203,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 9. Mousepad Razer Goliathus Extended Chroma (3 reseñas)
   "MP001": [
     {
       autor: "ManzanaVeloz",
@@ -236,7 +224,6 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 10. Polera Gamer Personalizada 'Level-Up' (2 reseñas)
   "PP001": [
     {
       autor: "Tooru",
@@ -252,7 +239,7 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 11. Polerón Gamer Personalizado 'Level-Up' (2 reseñas)
+
   "PG001": [
     {
       autor: "Zev",
@@ -268,7 +255,7 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 12. Mantención y Limpieza de PC Gamer (3 reseñas)
+
   "ST001": [
     {
       autor: "Kurogane",
@@ -290,7 +277,7 @@ const LUG_REVIEWS_BASE = {
     }
   ],
 
-  // 13. Armado de PC a Pedido (3 reseñas)
+
   "ST002": [
     {
       autor: "Fernando Zapata (SSSR)",
