@@ -24,7 +24,7 @@ Este repositorio contiene la versión funcional del Front-End para la **Evaluaci
 Tienda-Level-Up/
 ├── css/
 │   └── styles.css               # Estilos globales, paleta gamer (#000, #1E90FF, #39FF14), Orbitron y Roboto
-├── img/                         # Galería de imágenes reales de cada producto del catálogo
+├── img/                         # Galería de imágenes reales de cada producto del catálogo y blog
 │   ├── Catan.webp
 │   ├── Carcassonne.jpg
 │   ├── Controlador Inalámbrico Xbox Series X.webp
@@ -37,7 +37,11 @@ Tienda-Level-Up/
 │   ├── Polera Gamer Personalizada 'Level-Up'.png
 │   ├── Polerón Gamer Personalizado 'Level-Up'.png
 │   ├── Mantención y Limpieza de PC Gamer.webp
-│   └── Armado de PC a Pedido.webp
+│   ├── Armado de PC a Pedido.webp
+│   ├── Catan blog.jpg           # Imagen del artículo de blog de Juegos de Mesa
+│   ├── Carcassonne blog.jpg     # Imagen del artículo de blog de Carcassonne
+│   ├── Titan lab blog.webp      # Imagen del artículo de blog de Sillas Gamers
+│   └── Armando PC blog.webp     # Imagen del artículo de blog de Armado y Setup Gamer
 ├── js/
 │   ├── data.js                  # Catálogo de 10 categorías, productos base con rutas a img/ y posts de blog
 │   ├── auth.js                  # Gestión de usuarios, sesiones, roles (Admin/Cliente), niveles y canje de puntos
@@ -45,20 +49,46 @@ Tienda-Level-Up/
 │   ├── validations.js           # Validaciones JS: mayor de 18 años, correo Duoc, teléfono chileno, etc.
 │   ├── reviews.js               # Sistema de reseñas y cálculo de promedio de calificaciones en estrellas
 │   └── nav.js                   # Header/Footer inyectados, control de pestaña Admin protegida + WhatsApp flotante
-├── index.html                   # HOME / Página principal con Hero, categorías, destacados con fotos e impacto
+├── index.html                   # HOME / Página principal con Carrusel Hero rotativo 3s, categorías, destacados y blog
 ├── productos.html               # Catálogo completo con filtros avanzados (búsqueda, categorías, orden)
 ├── detalle-producto.html        # Vista detallada, fotos en gran formato, origen/fabricante, stock, reseñas
 ├── registro.html                # Registro con validación >= 18 años, detección correo Duoc y referidos
 ├── login.html                   # Inicio de sesión con soporte Admin ('admin' / 'duoc123') + botones Demo
 ├── mi-cuenta.html               # Perfil de usuario, nivel gamer, código de referido y canje de puntos
 ├── nosotros.html                # Historia, Misión, Visión, origen de productos e Impacto Comunitario
-├── blog.html                    # Novedades, consejos gamer y modal de lectura completa + compartir en RRSS
+├── blog.html                    # Novedades, consejos gamer y modal de lectura completa con imágenes + compartir en RRSS
 ├── contacto.html                # Formulario validado, enlace a WhatsApp y Mapa de Eventos en Chile
 ├── carrito.html                 # Carrito de compras con persistencia localStorage y checkout simulado
 ├── admin-productos.html         # Panel Admin Protegido: CRUD completo de productos con imágenes
 ├── admin-usuarios.html          # Panel Admin Protegido: Gestión de usuarios, edición de puntos y rol Duoc
 └── README.md                    # Documentación del proyecto
 ```
+
+---
+
+## 🎠 Carrusel Hero Interactivo de Productos
+
+En la cabecera de la página principal (`index.html`) se reemplazó el placeholder estático de ícono (`🕹️`) por un **carrusel dinámico de imágenes de productos**:
+- **Rotación Automática:** Transiciona fluidamente cada **3 segundos** al siguiente producto destacado.
+- **Bucle Infinito (Loop):** Al alcanzar el último producto de la lista, recomienza desde el primero de forma continua.
+- **Controles de Navegación:** Botones interactivos para **avanzar (`❯`)** o **retroceder (`❮`)** manualmente entre los productos, con reinicio inteligente del temporizador de 3 segundos para una navegación fluida.
+- **Indicadores de Posición (Dots):** Puntos interactivos que señalan el producto en pantalla y permiten saltar directamente a cualquiera de ellos con un solo clic.
+- **Redirección Directa al Detalle:** Al hacer clic sobre cualquier producto del carrusel, se redirige instantáneamente a su vista detallada (`detalle-producto.html?codigo=...`), cargando su información, stock y reseñas correspondientes.
+
+---
+
+## 📰 Galería e Integración Visual del Blog Gamer
+
+Se reemplazaron todos los íconos de texto de las noticias del blog por las fotografías dedicadas presentes en `img/`:
+- **Juegos de Mesa:** `img/Catan blog.jpg`
+- **Estrategia Carcassonne:** `img/Carcassonne blog.jpg`
+- **Sillas y Ergonomía Gamer:** `img/Titan lab blog.webp`
+- **Armado y Rendimiento de Setup:** `img/Armando PC blog.webp`
+
+Estas imágenes se encuentran activas en:
+1. **Sección de Noticias en el Home (`index.html`)**: Con efectos de zoom en hover (`scale(1.06)`) y diseño responsivo adaptativo.
+2. **Página Principal del Blog (`blog.html`)**: Grilla de artículos con miniaturas en alta definición.
+3. **Modal de Lectura Completa**: Visualización de la imagen del artículo en la cabecera del modal para una experiencia inmersiva.
 
 ---
 
