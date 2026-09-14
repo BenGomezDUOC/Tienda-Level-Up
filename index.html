@@ -48,8 +48,29 @@
             </div>
           </div>
         </div>
-        <div class="hero-visual">
-          🕹️
+        <div class="hero-carousel" id="hero-carousel" aria-label="Carrusel de Productos Destacados">
+          <!-- Enlace al detalle del producto -->
+          <a id="hero-carousel-link" href="detalle-producto.html" class="hero-carousel-link" title="Ver detalle del producto">
+            <div class="hero-carousel-badge">DESTACADO LEVEL-UP</div>
+            <div class="hero-carousel-img-wrap">
+              <img id="hero-carousel-img" src="" alt="Producto destacado" class="hero-carousel-img" />
+            </div>
+            <div class="hero-carousel-caption">
+              <span id="hero-carousel-cat" class="hero-carousel-cat"></span>
+              <h3 id="hero-carousel-title" class="hero-carousel-title"></h3>
+              <div class="hero-carousel-footer">
+                <span id="hero-carousel-price" class="hero-carousel-price"></span>
+                <span class="hero-carousel-cta">Ver Producto &rarr;</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Botones de navegación (anterior y siguiente) -->
+          <button type="button" class="hero-carousel-btn prev" id="hero-carousel-prev" aria-label="Producto anterior">&#10094;</button>
+          <button type="button" class="hero-carousel-btn next" id="hero-carousel-next" aria-label="Producto siguiente">&#10095;</button>
+
+          <!-- Indicadores de puntos (dots) -->
+          <div class="hero-carousel-dots" id="hero-carousel-dots"></div>
         </div>
       </div>
     </section>
@@ -221,14 +242,16 @@
         `).join("");
       }
 
-      // Renderizar resumen del Blog
+      // Renderizar resumen del Blog con las nuevas imágenes de noticias
       const blogCont = document.getElementById("home-blog");
       if (blogCont) {
-        blogCont.innerHTML = LUG_BLOG_POSTS.slice(0, 3).map(b => `
+        blogCont.innerHTML = LUG_BLOG_POSTS.slice(0, 4).map(b => `
           <div class="blog-card">
-            <div class="blog-imagen">${b.icono}</div>
+            <div class="blog-imagen">
+              ${b.imagen ? `<img src="${b.imagen}" alt="${b.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="fallback-icono" style="display:none; font-size: 3rem;">${b.icono}</span>` : `<span style="font-size: 3rem;">${b.icono}</span>`}
+            </div>
             <div class="blog-info">
-              <div class="blog-meta">${b.fecha} • Por ${b.autor}</div>
+              <div class="blog-meta">📅 ${b.fecha} • Por ${b.autor}</div>
               <h3>${b.titulo}</h3>
               <p>${b.resumen}</p>
               <a href="blog.html?id=${b.id}" class="btn btn-ghost btn-sm" style="padding-left:0;">Leer artículo &rarr;</a>
@@ -236,7 +259,124 @@
           </div>
         `).join("");
       }
+
+      // Inicializar el carrusel de productos en el Hero
+      iniciarHeroCarousel();
     });
+
+    function iniciarHeroCarousel() {
+      const carouselEl = document.getElementById("hero-carousel");
+      if (!carouselEl) return;
+
+      // Obtener todos los productos del catálogo que tienen imagen
+      const productos = lugGetProducts().filter(p => p.imagen);
+      if (!productos || productos.length === 0) return;
+
+      let indexActual = 0;
+      let timerAuto = null;
+
+      const linkEl = document.getElementById("hero-carousel-link");
+      const imgEl = document.getElementById("hero-carousel-img");
+      const catEl = document.getElementById("hero-carousel-cat");
+      const titleEl = document.getElementById("hero-carousel-title");
+      const priceEl = document.getElementById("hero-carousel-price");
+      const dotsCont = document.getElementById("hero-carousel-dots");
+      const prevBtn = document.getElementById("hero-carousel-prev");
+      const nextBtn = document.getElementById("hero-carousel-next");
+
+      // Renderizar los puntos indicadores (dots)
+      if (dotsCont) {
+        dotsCont.innerHTML = productos.map((_, i) => `
+          <button type="button" class="hero-carousel-dot ${i === 0 ? 'activo' : ''}" data-index="${i}" aria-label="Ver producto ${i + 1}"></button>
+        `).join("");
+
+        dotsCont.querySelectorAll(".hero-carousel-dot").forEach(dot => {
+          dot.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetIdx = parseInt(dot.getAttribute("data-index"), 10);
+            irASlide(targetIdx);
+            reiniciarTimer();
+          });
+        });
+      }
+
+      function renderSlide(i) {
+        const prod = productos[i];
+        if (!prod) return;
+
+        // Transición suave de opacidad
+        imgEl.style.opacity = "0.2";
+        imgEl.style.transform = "scale(0.95)";
+        
+        setTimeout(() => {
+          linkEl.href = `detalle-producto.html?codigo=${encodeURIComponent(prod.codigo)}`;
+          imgEl.src = prod.imagen;
+          imgEl.alt = prod.nombre;
+          catEl.textContent = lugGetCategoryName(prod.categoria);
+          titleEl.textContent = prod.nombre;
+          priceEl.textContent = lugFormatCLP(prod.precio);
+          
+          imgEl.style.opacity = "1";
+          imgEl.style.transform = "scale(1)";
+        }, 120);
+
+        // Actualizar estado de dots
+        if (dotsCont) {
+          const dots = dotsCont.querySelectorAll(".hero-carousel-dot");
+          dots.forEach((d, dIdx) => {
+            if (dIdx === i) {
+              d.classList.add("activo");
+            } else {
+              d.classList.remove("activo");
+            }
+          });
+        }
+      }
+
+      function irASlide(nuevoIdx) {
+        indexActual = (nuevoIdx + productos.length) % productos.length;
+        renderSlide(indexActual);
+      }
+
+      function siguiente() {
+        irASlide(indexActual + 1);
+      }
+
+      function anterior() {
+        irASlide(indexActual - 1);
+      }
+
+      function reiniciarTimer() {
+        if (timerAuto) clearInterval(timerAuto);
+        timerAuto = setInterval(siguiente, 3000);
+      }
+
+      // Eventos de botones anterior y siguiente
+      if (prevBtn) {
+        prevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          anterior();
+          reiniciarTimer();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          siguiente();
+          reiniciarTimer();
+        });
+      }
+
+      // Renderizar el primer producto inmediatamente
+      renderSlide(0);
+
+      // Iniciar la rotación automática cada 3 segundos (3000 ms)
+      timerAuto = setInterval(siguiente, 3000);
+    }
 
     function homeAgregar(codigo) {
       const res = lugAgregarAlCarrito(codigo, 1);

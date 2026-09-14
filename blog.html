@@ -33,9 +33,12 @@
   <!-- Modal para lectura de artículo completo (Detalles de Blog) -->
   <div class="modal-fondo" id="modal-blog">
     <div class="modal-caja" style="width: min(720px, 100%);">
-      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
-        <span id="modal-blog-icono" style="font-size: 2.8rem;"></span>
+      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+        <span id="modal-blog-icono" style="font-size: 2.5rem;"></span>
         <button onclick="cerrarModalBlog()" class="btn btn-ghost btn-sm" style="font-size: 1.2rem;" type="button">✕</button>
+      </div>
+      <div id="modal-blog-img-container" style="margin-bottom: 1.2rem; display: none;">
+        <img id="modal-blog-img" src="" alt="" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: var(--radio-chico); border: 1px solid var(--borde);" />
       </div>
       <div id="modal-blog-meta" class="blog-meta"></div>
       <h2 id="modal-blog-titulo" style="margin-bottom: 1rem;"></h2>
@@ -84,7 +87,9 @@
       const grid = document.getElementById("blog-grid-posts");
       grid.innerHTML = LUG_BLOG_POSTS.map(post => `
         <div class="blog-card">
-          <div class="blog-imagen">${post.icono}</div>
+          <div class="blog-imagen">
+            ${post.imagen ? `<img src="${post.imagen}" alt="${post.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><span class="fallback-icono" style="display:none; font-size: 3rem;">${post.icono}</span>` : `<span style="font-size: 3rem;">${post.icono}</span>`}
+          </div>
           <div class="blog-info">
             <div class="blog-meta">📅 ${post.fecha} • ✍️ ${post.autor}</div>
             <h3>${post.titulo}</h3>
@@ -106,6 +111,18 @@
       document.getElementById("modal-blog-meta").textContent = `Publicado el ${post.fecha} por ${post.autor}`;
       document.getElementById("modal-blog-titulo").textContent = post.titulo;
       document.getElementById("modal-blog-contenido").textContent = post.contenido;
+
+      const imgCont = document.getElementById("modal-blog-img-container");
+      const modalImg = document.getElementById("modal-blog-img");
+      if (imgCont && modalImg) {
+        if (post.imagen) {
+          modalImg.src = post.imagen;
+          modalImg.alt = post.titulo;
+          imgCont.style.display = "block";
+        } else {
+          imgCont.style.display = "none";
+        }
+      }
 
       const modal = document.getElementById("modal-blog");
       modal.classList.add("visible");

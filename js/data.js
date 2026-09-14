@@ -124,6 +124,7 @@ const LUG_BLOG_POSTS = [
     fecha: "2026-08-02",
     autor: "Equipo Level-Up",
     icono: "🎲",
+    imagen: "img/Catan blog.jpg",
     contenido: `Los juegos de mesa modernos han evolucionado muchísimo desde el clásico Monopoly. Hoy existen experiencias para todos los gustos: estrategia, cooperación, deducción y fiesta.
 
 Catan y Carcassonne son dos excelentes puntos de partida: reglas simples, partidas de menos de una hora y mucha interacción social. A medida que tu grupo agarre confianza, puedes avanzar a juegos con mayor profundidad estratégica.
@@ -137,6 +138,7 @@ Nuestra recomendación: junta a 3 o 4 amigos, elige un juego de nuestra categor�
     fecha: "2026-08-15",
     autor: "Equipo Level-Up",
     icono: "🪑",
+    imagen: "img/Titan lab blog.webp",
     contenido: `Pasar muchas horas sentado frente al computador exige una silla que cuide tu espalda. Al elegir una silla gamer, revisa estos puntos:
 
 1. Soporte lumbar ajustable.
@@ -153,11 +155,26 @@ La Secretlab Titan de nuestro catálogo cumple con todos estos puntos y es una d
     fecha: "2026-08-28",
     autor: "Equipo Level-Up",
     icono: "💻",
+    imagen: "img/Armando PC blog.webp",
     contenido: `Un buen setup gamer no depende solo del computador. El mouse, el mousepad y los audífonos también influyen en tu rendimiento.
 
 Para juegos competitivos, prioriza un mouse liviano y de alta precisión como el Logitech G502 HERO, junto a un mousepad extendido como el Razer Goliathus. Complementa con audífonos con buen aislamiento de sonido, como los HyperX Cloud II.
 
 Recuerda: la ergonomía y la comodidad se traducen directamente en mejor rendimiento durante sesiones largas.`,
+  },
+  {
+    id: "bp004",
+    titulo: "Estrategia y expansión: El arte de dominar Carcassonne",
+    resumen: "Consejos clave para posicionar tus losetas y dominar castillos, caminos y monasterios medievales.",
+    fecha: "2026-09-04",
+    autor: "Equipo Level-Up",
+    icono: "🏰",
+    imagen: "img/Carcassonne blog.jpg",
+    contenido: `Carcassonne es uno de los mayores clásicos modernos por su perfecta mezcla de simplicidad y profundidad táctica.
+
+Colocar estratégicamente a tus seguidores (meeples) como caballeros, ladrones, monjes o granjeros puede cambiar el rumbo de la partida en el último turno. Aprender a cerrar ciudades rivales o disputar campos fértiles es el sello de los verdaderos estrategas.
+
+Disponible en Level-Up Gamer con entrega inmediata para tus tardes de juego con amigos.`,
   },
 ];
 
