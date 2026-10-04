@@ -1,13 +1,18 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./styles.css";
 
 /**
- * Punto de entrada de la aplicación React (Tutorial 01A).
+ * Tutorial 02.
+ * BrowserRouter habilita la navegación mediante URLs
+ * para toda nuestra aplicación React.
  */
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );

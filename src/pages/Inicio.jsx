@@ -1,10 +1,10 @@
 /**
- * Página Inicio equivalente a index.html de Level-Up Gamer.
- * Migrado de HTML a JSX (Tutorial 01A).
+ * Página Inicio adaptada a Tutorial 01B.
+ * El contenedor <main> ahora es controlado por App.jsx.
  */
 export default function Inicio() {
   return (
-    <main className="main-container">
+    <>
       <section className="hero">
         <span className="hero-eyebrow">🚀 BIENVENIDO A LEVEL-UP GAMER</span>
         <h2>EQUÍPATE CON LO MEJOR DEL GAMING EN CHILE</h2>
@@ -30,10 +30,10 @@ export default function Inicio() {
       </section>
 
       <section className="panel">
-        <h2>Productos Destacados & Gamificación</h2>
+        <h2>Objetivo del Proyecto & Gamificación</h2>
         <p>
-          En Level-Up Gamer premiamos tu lealtad: gana puntos por compras y
-          referidos para ascender desde Novato hasta Leyenda LevelUp.
+          Separar lo que se repite de lo que cambia entre páginas. En Level-Up
+          Gamer premiamos tu lealtad mediante nuestro sistema de niveles y puntos.
         </p>
         <div className="destacados-preview">
           <div className="destacado-mini">
@@ -54,6 +54,6 @@ export default function Inicio() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }
