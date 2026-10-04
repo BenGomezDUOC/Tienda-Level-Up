@@ -1,0 +1,388 @@
+/* ============================================================
+   LEVEL-UP GAMER — Estilos React (Tutorial 01A)
+   Paleta: fondo negro #000000, azul eléctrico #1E90FF,
+   verde neón #39FF14, textos blanco #ffffff y gris #d3d3d3.
+   Fuentes: Orbitron (títulos) y Roboto (cuerpo).
+   ============================================================ */
+
+:root {
+  --bg: #000000;
+  --bg-elevada: #0a0e14;
+  --bg-tarjeta: #111620;
+  --borde: rgba(255, 255, 255, 0.12);
+  --borde-fuerte: rgba(255, 255, 255, 0.22);
+  --azul: #1e90ff;
+  --verde: #39ff14;
+  --texto: #ffffff;
+  --texto-secundario: #d3d3d3;
+  --texto-tenue: #8a8f98;
+  --fuente-titulo: "Orbitron", sans-serif;
+  --fuente-texto: "Roboto", sans-serif;
+  --radio: 12px;
+  --radio-sm: 8px;
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulo);
+  color: var(--texto);
+  margin-top: 0;
+}
+
+p {
+  color: var(--texto-secundario);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background: linear-gradient(135deg, #06090e 0%, #0d1522 100%);
+  border-bottom: 1px solid var(--borde);
+  color: white;
+  padding: 22px 24px;
+}
+
+.header-inner,
+.nav-inner,
+.main-container,
+.footer-inner {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+.logo-accent {
+  color: var(--verde);
+}
+
+.site-header p {
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  color: var(--texto-tenue);
+}
+
+/* ---------- Navbar ---------- */
+.site-nav {
+  background: var(--bg-elevada);
+  border-bottom: 1px solid var(--borde);
+}
+
+.nav-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.site-nav a,
+.site-nav button {
+  color: var(--texto-secundario);
+  font-family: var(--fuente-texto);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radio-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav button:hover {
+  color: var(--verde);
+  border-color: rgba(57, 255, 20, 0.3);
+  background: rgba(57, 255, 20, 0.06);
+}
+
+/* ---------- Contenedor Principal ---------- */
+.main-container {
+  min-height: 65vh;
+  padding: 32px 0 48px;
+}
+
+/* ---------- Tarjetas y Secciones (Hero, Panel, Form-card) ---------- */
+.hero,
+.panel,
+.form-card {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 28px;
+  box-shadow: var(--sombra);
+}
+
+.hero {
+  margin-bottom: 28px;
+  background: radial-gradient(circle at 10% 20%, rgba(30, 144, 255, 0.15), transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(57, 255, 20, 0.1), transparent 40%),
+              var(--bg-tarjeta);
+  border-color: var(--borde-fuerte);
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  color: var(--verde);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.hero h2 {
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  margin-bottom: 0.6rem;
+  color: var(--texto);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat strong {
+  display: block;
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  color: var(--verde);
+}
+
+.hero-stat span {
+  font-size: 0.85rem;
+  color: var(--texto-tenue);
+}
+
+.destacados-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.destacado-mini {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-sm);
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.destacado-mini:hover {
+  transform: translateY(-3px);
+  border-color: var(--azul);
+}
+
+.destacado-mini span {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ---------- Catálogo de Productos ---------- */
+.productos,
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.producto-card {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--azul);
+  box-shadow: 0 12px 28px rgba(30, 144, 255, 0.15);
+}
+
+.producto-card img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: contain;
+  background: #06090e;
+  padding: 14px;
+  display: block;
+}
+
+.producto-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.producto-body h3 {
+  font-size: 1.05rem;
+  margin: 4px 0 6px;
+}
+
+.categoria {
+  color: var(--verde);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.precio {
+  font-family: var(--fuente-titulo);
+  font-size: 1.25rem;
+  color: var(--azul);
+  font-weight: 700;
+  margin: auto 0 0;
+}
+
+/* ---------- Formularios (Contacto y Login) ---------- */
+.form-card {
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.form-group {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--borde-fuerte);
+  background: #080c12;
+  color: var(--texto);
+  border-radius: var(--radio-sm);
+  padding: 11px 14px;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--verde);
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+button.primary,
+.primary {
+  background: var(--azul);
+  color: #04101d;
+  border: 0;
+  border-radius: var(--radio-sm);
+  padding: 12px 22px;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button.primary:hover,
+.primary:hover {
+  background: #4da6ff;
+  transform: translateY(-1px);
+}
+
+/* ---------- Panel Admin ---------- */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.kpi {
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid var(--borde-fuerte);
+  border-radius: var(--radio-sm);
+  padding: 20px;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+}
+
+.kpi strong {
+  font-family: var(--fuente-titulo);
+  font-size: 2rem;
+  color: var(--verde);
+}
+
+.kpi span {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--bg-elevada);
+  border-top: 1px solid var(--borde);
+  color: var(--texto-tenue);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .site-header {
+    padding-inline: 16px;
+  }
+  .nav-inner {
+    flex-direction: column;
+  }
+  .site-nav a,
+  .site-nav button {
+    width: 100%;
+    text-align: left;
+  }
+}
